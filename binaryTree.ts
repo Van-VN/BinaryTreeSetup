@@ -67,15 +67,27 @@ export class BinaryTree<T> {
     return null;
   }
 
-  inorder(node: TreeNode<T> | null): void {
+  preOrder(node: TreeNode<T> | null): void {
     if (node) {
       console.log(node.data);
-      if (node.left) {
-        this.inorder(node.left);
-      }
-      if (node.right) {
-        this.inorder(node.right);
-      }
+      this.preOrder(node.left);
+      this.preOrder(node.right);
+    }
+  }
+
+  inOrder(node: TreeNode<T> | null): void {
+    if (node) {
+      this.inOrder(node.left);
+      console.log(node.data);
+      this.inOrder(node.right);
+    }
+  }
+
+  postOrder(node: TreeNode<T> | null): void {
+    if (node) {
+      this.postOrder(node.left);
+      this.postOrder(node.right);
+      console.log(node.data);
     }
   }
 }
@@ -89,4 +101,6 @@ tree.insert(8);
 tree.insert(9);
 tree.insert(2);
 // console.log(tree);
-console.log(tree.findValue(8));
+// console.log(tree.findValue(8));
+console.log(tree.preOrder(tree.root));
+// console.log(tree.inOrder(tree.root));
